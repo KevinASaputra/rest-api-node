@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const mongoose = require("mongoose");
 const productRoute = require("./routes/ProductRoute");
 
@@ -8,11 +9,13 @@ const productRoute = require("./routes/ProductRoute");
 const MONGODB_URL = process.env.MONGODB_URL;
 const PORT = process.env.PORT || 3000;
 
+// enable cors
+app.use(cors());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // routes
-
 app.use("/api/products", productRoute);
 
 app.get("/", (req, res) => {
