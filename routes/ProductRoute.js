@@ -13,7 +13,7 @@ const {
 routes.get("/", getProducts);
 
 // update product
-routes.put("/:id", updateProducts);
+routes.patch("/:id", updateProducts);
 
 // delete product
 routes.delete("/:id", deleteProducts);
