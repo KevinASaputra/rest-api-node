@@ -4,6 +4,8 @@ const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
 const productRoute = require("./routes/ProductRoute");
+const UserRoute = require("./routes/UserRoute");
+const authRoute = require("./routes/auth.route");
 
 // env
 const MONGODB_URL = process.env.MONGODB_URL;
@@ -17,6 +19,8 @@ app.use(express.urlencoded({ extended: false }));
 
 // routes
 app.use("/api/products", productRoute);
+app.use("/api/users", UserRoute);
+app.use("/api/auth", authRoute);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
