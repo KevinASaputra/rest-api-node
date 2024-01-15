@@ -23,6 +23,9 @@ dependencies:
   mongoose:
     specifier: ^8.0.3
     version: 8.0.4
+  nodemailer:
+    specifier: ^6.9.8
+    version: 6.9.8
   validator:
     specifier: ^13.11.0
     version: 13.11.0
@@ -846,6 +849,11 @@ packages:
         optional: true
     dependencies:
       whatwg-url: 5.0.0
+    dev: false
+
+  /nodemailer@6.9.8:
+    resolution: {integrity: sha512-cfrYUk16e67Ks051i4CntM9kshRYei1/o/Gi8K1d+R34OIs21xdFnW7Pt7EucmVKA0LKtqUGNcjMZ7ehjl49mQ==}
+    engines: {node: '>=6.0.0'}
     dev: false
 
   /nodemon@3.0.2:
