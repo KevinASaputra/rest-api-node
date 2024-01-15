@@ -4,7 +4,9 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const productRoute = require("./routes/ProductRoute");
 const UserRoute = require("./routes/UserRoute");
+const authRoute = require("./controllers/authController");
 const env = require("./config/env");
+const authenticator = require("./middleware/authMiddleware");
 
 // enable cors
 app.use(cors());
@@ -14,7 +16,8 @@ app.use(express.urlencoded({ extended: false }));
 
 // routes
 app.use("/api/products", productRoute);
-app.use("/api/users", UserRoute);
+app.use("/api/users", authenticator, UserRoute); // Private route - require JWT token
+app.use("/api/auth", authRoute);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
