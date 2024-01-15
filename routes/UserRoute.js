@@ -3,7 +3,8 @@ const routes = express.Router();
 
 const {
   createUser,
-  readUser,
+  getAllUsers,
+  getSingleUser,
   updateUser,
   deleteUser,
 } = require("../controllers/userControllers");
@@ -12,7 +13,9 @@ const {
 routes.post("/create", createUser);
 
 //  read user
-routes.get("/", readUser);
+routes.get("/", getAllUsers);
+
+routes.get("/:id", getSingleUser);
 
 //  update user
 routes.patch("/:id", updateUser);
