@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-// remove password from user object
+// Remove password from user object
 userSchema.methods.toJSON = function () {
   const user = this.toObject();
   delete user.password;
@@ -30,10 +30,14 @@ userSchema.pre("save", async function (next) {
   }
 
   try {
+    // Generate salt
     const salt = await bcrypt.genSalt(10);
+    // Generate hashed password
     this.password = await bcrypt.hash(this.password, salt);
+    // Proceed to next middleware
     next();
   } catch (error) {
+    console.log(error);
     next(error);
   }
 });
