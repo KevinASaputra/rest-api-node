@@ -1,15 +1,10 @@
-require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
 const productRoute = require("./routes/ProductRoute");
 const UserRoute = require("./routes/UserRoute");
-const authRoute = require("./routes/auth.route");
-
-// env
-const MONGODB_URL = process.env.MONGODB_URL;
-const PORT = process.env.PORT || 3000;
+const env = require("./config/env");
 
 // enable cors
 app.use(cors());
@@ -20,7 +15,6 @@ app.use(express.urlencoded({ extended: false }));
 // routes
 app.use("/api/products", productRoute);
 app.use("/api/users", UserRoute);
-app.use("/api/auth", authRoute);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
@@ -32,11 +26,11 @@ app.get("/about", (req, res) => {
 
 mongoose.set("strictQuery", false);
 mongoose
-  .connect(MONGODB_URL)
+  .connect(env.MONGODB_URL)
   .then(() => {
     console.log("Connected to MongoDB");
-    app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
+    app.listen(env.PORT, () => {
+      console.log(`Server is running on port ${env.PORT}`);
     });
   })
   .catch((err) => {
